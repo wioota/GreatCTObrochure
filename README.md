@@ -204,3 +204,5 @@ For questions or issues:
 ## License
 
 This project is open source. Feel free to customize and use for your own CTO coaching website.
+
+<!-- Deployment trigger: Sat Aug  9 11:29:38 UTC 2025 -->
