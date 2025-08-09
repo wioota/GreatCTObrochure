@@ -64,11 +64,13 @@ STATIC_PATHS = [
     'assets',
     'extras/robots.txt',
     'extras/favicon.ico',
+    'extras/.nojekyll',
 ]
 
 EXTRA_PATH_METADATA = {
     'extras/robots.txt': {'path': 'robots.txt'},
     'extras/favicon.ico': {'path': 'favicon.ico'},
+    'extras/.nojekyll': {'path': '.nojekyll'},
 }
 
 # Sitemap configuration

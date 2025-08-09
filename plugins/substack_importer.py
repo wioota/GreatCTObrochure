@@ -158,13 +158,17 @@ class SubstackImporter:
         if hasattr(entry, 'tags'):
             tags = [tag.term for tag in entry.tags]
         
+        # Create a clean slug without colons and other problematic characters
+        clean_title = title.replace(':', ' -').replace('(', '').replace(')', '')
+        slug = slugify(clean_title)
+        
         # Create metadata
         metadata = [
             f"Title: {title}",
             f"Date: {pub_date.strftime('%Y-%m-%d %H:%M')}",
             f"Category: Blog",
             f"Tags: {', '.join(tags) if tags else 'substack'}",
-            f"Slug: {slugify(title)}",
+            f"Slug: {slug}",
             f"Source: Substack",
             f"Original-URL: {link}",
             f"Summary: {self._create_summary(content)}"
