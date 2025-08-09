@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">
+                    Dedicated to Helping CTOs Thrive
+                </h1>
+                <p class="lead mb-4">
+                    Practical advice and proven practices for CTOs from an experienced CTO and coach. 
+                    Be a more helpful leader by giving teams the context they need to do their best work.
+                </p>
+                <div class="hero-cta">
+                    <a href="/contact/" class="btn btn-light btn-lg me-3">Book Strategy Call</a>
+                    <a href="/services/" class="btn btn-outline-light btn-lg">Explore Services</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-image text-center">
+                    <!-- Placeholder for hero image -->
+                    <div class="bg-white bg-opacity-20 rounded p-5">
+                        <i class="fas fa-rocket fa-5x mb-3"></i>
+                        <p class="mb-0">Technology Leadership</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Social Proof -->
+<section class="py-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="text-muted mb-3">Trusted by technology leaders at:</p>
+                <div class="row justify-content-center align-items-center">
+                    <!-- Placeholder for company logos -->
+                    <div class="col-md-2 col-4 mb-2">
+                        <div class="logo-placeholder bg-secondary rounded p-2 text-center text-white">
+                            Logo 1
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-4 mb-2">
+                        <div class="logo-placeholder bg-secondary rounded p-2 text-center text-white">
+                            Logo 2
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-4 mb-2">
+                        <div class="logo-placeholder bg-secondary rounded p-2 text-center text-white">
+                            Logo 3
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Overview -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Focus on Outcomes</h2>
+                <p class="lead text-muted">
+                    Through group coaching, practical resources, and community, 
+                    I help CTOs navigate the evolving landscape of technology leadership.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="service-card h-100 p-4 text-center border rounded">
+                    <div class="service-icon mb-3">
+                        <i class="fas fa-user-tie fa-3x text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Group CTO Coaching</h4>
+                    <p class="text-muted mb-4">
+                        Collaborative coaching sessions with fellow CTOs to share experiences, 
+                        learn from peers, and tackle real challenges together.
+                    </p>
+                    <a href="/services/cto-coach/" class="btn btn-outline-primary">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="service-card h-100 p-4 text-center border rounded">
+                    <div class="service-icon mb-3">
+                        <i class="fas fa-cogs fa-3x text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">CTO Life Line</h4>
+                    <p class="text-muted mb-4">
+                        Monthly livestream conversations for CTOs discussing current challenges, 
+                        AI impact, and practical leadership strategies.
+                    </p>
+                    <a href="/services/fractional-cto/" class="btn btn-outline-primary">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="service-card h-100 p-4 text-center border rounded">
+                    <div class="service-icon mb-3">
+                        <i class="fas fa-chart-line fa-3x text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Community & Resources</h4>
+                    <p class="text-muted mb-4">
+                        Join our Discord community, access the CTO Coach Directory, 
+                        and get practical insights on AI-assisted development.
+                    </p>
+                    <a href="/services/consulting/" class="btn btn-outline-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Recent Blog Posts -->
+{% if articles %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-6 fw-bold mb-3">Latest Insights</h2>
+                <p class="lead text-muted">
+                    Thoughts on technology leadership, organizational growth, and industry trends.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            {% for article in articles[:3] %}
+            <div class="col-lg-4">
+                <article class="blog-card h-100 bg-white rounded shadow-sm p-4">
+                    <h5 class="fw-bold mb-2">
+                        <a href="{{ SITEURL }}/{{ article.url }}" class="text-decoration-none text-dark">
+                            {{ article.title }}
+                        </a>
+                    </h5>
+                    <p class="text-muted small mb-3">
+                        <time datetime="{{ article.date.isoformat() }}">
+                            {{ article.locale_date }}
+                        </time>
+                    </p>
+                    <p class="text-muted">{{ article.summary|striptags|truncate(150) }}</p>
+                    <a href="{{ SITEURL }}/{{ article.url }}" class="btn btn-sm btn-outline-primary">Read More</a>
+                </article>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="/blog/" class="btn btn-primary">View All Posts</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-6 fw-bold mb-3">Ready to Scale Your Technology Organization?</h2>
+                <p class="lead mb-4">
+                    Let's discuss how I can help you build a world-class technology team and strategy.
+                </p>
+                <a href="/contact/" class="btn btn-light btn-lg">Schedule a Free Consultation</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

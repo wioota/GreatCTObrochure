@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Categories - {{ SITENAME }}{% endblock title %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <header class="page-header mb-5 text-center">
+                    <h1 class="display-4 fw-bold mb-3">Categories</h1>
+                    <p class="lead text-muted">Browse articles by topic</p>
+                </header>
+                
+                {% if categories %}
+                <div class="row g-4">
+                    {% for category, articles in categories %}
+                    <div class="col-md-6">
+                        <div class="category-card h-100 p-4 border rounded">
+                            <h4 class="fw-bold mb-3">
+                                <a href="{{ SITEURL }}/{{ category.url }}" class="text-decoration-none text-primary">
+                                    {{ category }}
+                                </a>
+                            </h4>
+                            <p class="text-muted mb-3">{{ articles|length }} article{% if articles|length != 1 %}s{% endif %}</p>
+                            <a href="{{ SITEURL }}/{{ category.url }}" class="btn btn-outline-primary">View Articles</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="text-center py-5">
+                    <i class="fas fa-folder-open fa-3x text-muted mb-3"></i>
+                    <h3 class="text-muted">No categories yet</h3>
+                    <p class="text-muted">Categories will appear here as articles are published.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

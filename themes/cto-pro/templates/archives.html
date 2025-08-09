@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Blog Archives - {{ SITENAME }}{% endblock title %}
+{% block description %}Complete archive of all blog posts and articles about technology leadership, CTO coaching, and engineering management.{% endblock description %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <header class="page-header mb-5 text-center">
+                    <h1 class="display-4 fw-bold mb-3">Blog Archives</h1>
+                    <p class="lead text-muted">
+                        All posts about technology leadership, team scaling, and engineering excellence.
+                    </p>
+                </header>
+                
+                {% if dates %}
+                <div class="archive-list">
+                    {% for article in dates %}
+                    <article class="archive-item mb-4 p-4 border rounded">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h4 class="fw-bold mb-2">
+                                    <a href="{{ SITEURL }}/{{ article.url }}" class="text-decoration-none text-dark">
+                                        {{ article.title }}
+                                    </a>
+                                </h4>
+                                {% if article.summary %}
+                                <p class="text-muted mb-2">{{ article.summary|striptags|truncate(200) }}</p>
+                                {% endif %}
+                                
+                                <div class="article-meta text-muted small">
+                                    <time datetime="{{ article.date.isoformat() }}" class="me-3">
+                                        <i class="far fa-calendar me-1"></i>
+                                        {{ article.locale_date }}
+                                    </time>
+                                    
+                                    {% if article.category %}
+                                    <span class="me-3">
+                                        <i class="far fa-folder me-1"></i>
+                                        {{ article.category }}
+                                    </span>
+                                    {% endif %}
+                                    
+                                    {% if article.tags %}
+                                    <span>
+                                        <i class="far fa-tags me-1"></i>
+                                        {% for tag in article.tags %}
+                                        <span class="badge bg-secondary me-1">{{ tag }}</span>
+                                        {% endfor %}
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-md-end">
+                                <a href="{{ SITEURL }}/{{ article.url }}" class="btn btn-outline-primary">Read More</a>
+                            </div>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="text-center py-5">
+                    <i class="fas fa-file-alt fa-3x text-muted mb-3"></i>
+                    <h3 class="text-muted">No articles yet</h3>
+                    <p class="text-muted">Check back soon for insights on technology leadership and engineering management.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

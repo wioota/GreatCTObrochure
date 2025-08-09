@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} - {{ SITENAME }}{% endblock title %}
+{% block description %}{{ page.summary|default(page.content|striptags|truncate(160))|e }}{% endblock description %}
+
+{% block og_title %}{{ page.title }}{% endblock og_title %}
+{% block og_description %}{{ page.summary|default(page.content|striptags|truncate(160))|e }}{% endblock og_description %}
+{% block og_url %}{{ SITEURL }}/{{ page.url }}{% endblock og_url %}
+{% block og_type %}article{% endblock og_type %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- Page Header -->
+                <header class="page-header mb-5 text-center">
+                    <h1 class="display-4 fw-bold mb-3">{{ page.title }}</h1>
+                    {% if page.subtitle %}
+                    <p class="lead text-muted">{{ page.subtitle }}</p>
+                    {% endif %}
+                </header>
+                
+                <!-- Page Content -->
+                <div class="page-content">
+                    {{ page.content }}
+                </div>
+                
+                <!-- CTA Section for Service Pages -->
+                {% if page.slug and page.slug.startswith('services/') %}
+                <div class="service-cta mt-5 p-4 bg-light rounded">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h4 class="fw-bold mb-2">Ready to get started?</h4>
+                            <p class="mb-0 text-muted">Let's discuss how this service can help your organization.</p>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <a href="/contact/" class="btn btn-primary">Book a Call</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

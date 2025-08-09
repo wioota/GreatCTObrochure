@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} - {{ SITENAME }}{% endblock title %}
+{% block description %}{{ article.summary|default(article.content|striptags|truncate(160))|e }}{% endblock description %}
+
+{% block og_title %}{{ article.title }}{% endblock og_title %}
+{% block og_description %}{{ article.summary|default(article.content|striptags|truncate(160))|e }}{% endblock og_description %}
+{% block og_url %}{{ SITEURL }}/{{ article.url }}{% endblock og_url %}
+{% block og_type %}article{% endblock og_type %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- Article Header -->
+                <header class="article-header mb-5">
+                    <h1 class="display-5 fw-bold mb-3">{{ article.title }}</h1>
+                    
+                    <div class="article-meta d-flex align-items-center text-muted mb-4">
+                        <time datetime="{{ article.date.isoformat() }}" class="me-3">
+                            <i class="far fa-calendar me-1"></i>
+                            {{ article.locale_date }}
+                        </time>
+                        
+                        {% if article.category %}
+                        <span class="me-3">
+                            <i class="far fa-folder me-1"></i>
+                            <a href="{{ SITEURL }}/{{ article.category.url }}" class="text-decoration-none">
+                                {{ article.category }}
+                            </a>
+                        </span>
+                        {% endif %}
+                        
+                        {% if article.tags %}
+                        <span>
+                            <i class="far fa-tags me-1"></i>
+                            {% for tag in article.tags %}
+                            <a href="{{ SITEURL }}/{{ tag.url }}" class="badge bg-secondary text-decoration-none me-1">
+                                {{ tag }}
+                            </a>
+                            {% endfor %}
+                        </span>
+                        {% endif %}
+                    </div>
+                    
+                    {% if article.summary %}
+                    <div class="article-summary lead text-muted mb-4">
+                        {{ article.summary }}
+                    </div>
+                    {% endif %}
+                </header>
+                
+                <!-- Article Content -->
+                <div class="article-content">
+                    {{ article.content }}
+                </div>
+                
+                <!-- Article Footer -->
+                <footer class="article-footer mt-5 pt-4 border-top">
+                    <!-- Navigation -->
+                    {% if article.prev_article or article.next_article %}
+                    <nav class="article-nav row">
+                        <div class="col-md-6">
+                            {% if article.prev_article %}
+                            <div class="nav-previous">
+                                <small class="text-muted">Previous Article</small>
+                                <h6>
+                                    <a href="{{ SITEURL }}/{{ article.prev_article.url }}" class="text-decoration-none">
+                                        {{ article.prev_article.title }}
+                                    </a>
+                                </h6>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 text-md-end">
+                            {% if article.next_article %}
+                            <div class="nav-next">
+                                <small class="text-muted">Next Article</small>
+                                <h6>
+                                    <a href="{{ SITEURL }}/{{ article.next_article.url }}" class="text-decoration-none">
+                                        {{ article.next_article.title }}
+                                    </a>
+                                </h6>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </nav>
+                    {% endif %}
+                </footer>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related CTA -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h3 class="fw-bold mb-3">Found this helpful?</h3>
+                <p class="text-muted mb-4">
+                    Get more insights on technology leadership and organizational growth.
+                </p>
+                <a href="/contact/" class="btn btn-primary me-3">Work with Me</a>
+                <a href="/blog/" class="btn btn-outline-primary">Read More Posts</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

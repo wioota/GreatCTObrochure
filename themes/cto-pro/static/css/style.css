@@ -1,0 +1,249 @@
+/* Custom CSS for CTO Coach Website */
+
+:root {
+    --primary-color: #1e3a8a;
+    --primary-light: #3b82f6;
+    --secondary-color: #f59e0b;
+    --dark-color: #1f2937;
+    --light-color: #f8fafc;
+    --text-muted: #6b7280;
+}
+
+/* Override Bootstrap primary color */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--primary-light);
+    border-color: var(--primary-light);
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+/* Navigation */
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.main-content {
+    margin-top: 76px; /* Account for fixed navbar */
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+.hero-cta .btn {
+    font-weight: 600;
+    padding: 12px 32px;
+}
+
+/* Service Cards */
+.service-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #e5e7eb !important;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.service-icon {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Blog Cards */
+.blog-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo Placeholders */
+.logo-placeholder {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* Page Content */
+.page-content h1,
+.page-content h2,
+.page-content h3,
+.page-content h4,
+.page-content h5,
+.page-content h6 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.page-content h1 {
+    color: var(--primary-color);
+}
+
+.page-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.page-content ul,
+.page-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.page-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.page-content blockquote {
+    background-color: var(--light-color);
+    border-left: 4px solid var(--primary-color);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+}
+
+.page-content code {
+    background-color: #f1f5f9;
+    color: #e11d48;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+}
+
+.page-content pre {
+    background-color: #1e293b;
+    color: #f1f5f9;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 2rem 0;
+}
+
+.page-content pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+}
+
+/* Article Content */
+.article-content {
+    line-height: 1.8;
+}
+
+.article-meta {
+    font-size: 0.9rem;
+}
+
+.article-meta a {
+    color: var(--text-muted);
+}
+
+.article-meta a:hover {
+    color: var(--primary-color);
+}
+
+/* Service CTA */
+.service-cta {
+    border: 1px solid #e5e7eb;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-color) !important;
+}
+
+footer h5,
+footer h6 {
+    color: white;
+    font-weight: 600;
+}
+
+footer .social-links a {
+    font-size: 1.2rem;
+    transition: color 0.2s ease;
+}
+
+footer .social-links a:hover {
+    color: var(--secondary-color) !important;
+}
+
+/* Utilities */
+.fw-bold {
+    font-weight: 700 !important;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .display-5 {
+        font-size: 2rem;
+    }
+    
+    .display-6 {
+        font-size: 1.75rem;
+    }
+    
+    .hero-cta .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-cta .btn:last-child {
+        margin-bottom: 0;
+    }
+    
+    .min-vh-75 {
+        min-height: auto;
+        padding: 3rem 0;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    footer,
+    .service-cta,
+    .hero-cta {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-top: 0 !important;
+    }
+}
