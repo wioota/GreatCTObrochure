@@ -76,7 +76,7 @@ After committing changes, **ALWAYS** deploy to make them live:
 ./push-to-github.sh
 ```
 This script:
-1. ✓ Extracts token from mcp-config.json
+1. ✓ Extracts token from environment/configuration
 2. ✓ Pushes to GitHub
 3. ✓ Triggers automatic deployment
 4. ✓ Cleans up credentials
@@ -170,11 +170,32 @@ git revert HEAD
 - `themes/cto-pro/` - Custom theme
   - `templates/` - Jinja2 templates
   - `static/` - CSS, JS, images
+    - `images/` - Theme images (logos, icons)
 - `plugins/` - Pelican plugins
   - `substack_importer.py` - Auto-imports from Substack RSS
 - `pelicanconf.py` - Development configuration
 - `publishconf.py` - Production configuration
 - `.github/workflows/deploy.yml` - GitHub Actions deployment
+
+## Logo and Asset Management
+
+### Adding/Updating the Site Logo
+
+The site logo is displayed in the top navigation bar. To update it:
+
+1. **Download the new logo image** to `themes/cto-pro/static/images/logo.png`
+2. **Update the navigation template** in `themes/cto-pro/templates/base.html`
+   - Logo is referenced as: `<img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/logo.png">`
+   - Current implementation: 40px height with Bootstrap flex layout
+3. **Test locally** using development config: `pelican content -o output -s pelicanconf.py`
+4. **Test production build**: `pelican content -o output -s publishconf.py`
+5. **Verify both configurations** work correctly before committing
+
+**Important Notes:**
+- Use `pelicanconf.py` (RELATIVE_URLS=True) for local testing
+- Use `publishconf.py` for production builds (absolute URLs)
+- Logo should be high-resolution PNG for best quality
+- Test both desktop and mobile layouts
 
 ## Code Style Preferences
 - Python: Follow PEP 8
@@ -190,7 +211,7 @@ git revert HEAD
 - **GitHub Pages source**: Set to "GitHub Actions" (not "Deploy from a branch")
 - **Substack integration**: Auto-imports from https://greatcto.me/feed daily
 - **Deployment**: Automatic via GitHub Actions on push to main branch
-- **Security**: mcp-config.json is git-ignored (contains GitHub token)
+- **Security**: GitHub token managed through environment variables
 - **Build time**: ~30 seconds locally, 2-3 minutes on GitHub Actions
 
 ## Troubleshooting
