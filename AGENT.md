@@ -34,11 +34,13 @@ pelican content -o output -s publishconf.py
 **Expected**: `Done: Processed X articles, 0 drafts, 0 hidden articles, Y pages`
 **If fails**: Fix build errors before committing
 
-### 2. Local Preview (Recommended)
+### 2. Local Preview (Required - User Must Approve)
 ```bash
 cd output && python3 -m http.server 8000 &
 # Visit http://localhost:8000
+# Show preview to user
 # Check homepage, services pages, blog articles
+# WAIT FOR USER APPROVAL before proceeding to commit
 pkill -f "python3 -m http.server"
 ```
 
@@ -118,13 +120,15 @@ Here's the complete workflow to follow for any changes:
 export PATH=$PATH:/home/wioota/.local/bin
 pelican content -o output -s publishconf.py
 
-# 3. Preview locally (optional but recommended)
+# 3. Preview locally (REQUIRED - show user before committing)
 cd output && python3 -m http.server 8000 &
-# Check http://localhost:8000
+# Visit http://localhost:8000
+# Review changes with user
+# Get user approval before proceeding
 pkill -f "python3 -m http.server"
 cd ..
 
-# 4. If build successful, commit changes
+# 4. ONLY AFTER USER APPROVAL - commit changes
 git add .
 git commit -m "Your descriptive commit message"
 
@@ -139,7 +143,8 @@ git commit -m "Your descriptive commit message"
 
 ### Full Build and Deploy
 ```bash
-# One-liner for quick updates (after making changes)
+# IMPORTANT: Only use after getting user approval for changes!
+# One-liner for quick updates (after user approval)
 export PATH=$PATH:/home/wioota/.local/bin && \
 pelican content -o output -s publishconf.py && \
 git add . && \
@@ -176,7 +181,9 @@ git revert HEAD
 - Markdown: Standard formatting
 - Config files: Maintain existing structure
 - Commit messages: Clear, descriptive, present tense
+- **NEVER commit without user approval**
 - Always test build before committing
+- Always show preview to user before committing
 - Always deploy after committing
 
 ## Important Notes
