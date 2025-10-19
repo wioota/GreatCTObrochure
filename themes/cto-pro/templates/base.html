@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
-    
+
     <!-- Meta tags -->
-    <meta name="description" content="{% block description %}Expert CTO coaching, fractional executive services, and technology consulting{% endblock description %}">
+    <meta name="description" content="{% block description %}{% if SITE_DESCRIPTION %}{{ SITE_DESCRIPTION }}{% else %}Expert CTO coaching, fractional executive services, and technology consulting{% endif %}{% endblock description %}">
     <meta name="author" content="{{ AUTHOR }}">
+    {% if SITE_KEYWORDS %}
+    <meta name="keywords" content="{{ SITE_KEYWORDS }}">
+    {% endif %}
+    <link rel="canonical" href="{% block canonical %}{{ SITEURL }}{% endblock canonical %}">
     
     <!-- Open Graph -->
     <meta property="og:site_name" content="{{ SITENAME }}">
@@ -35,7 +39,68 @@
     {% if FEED_ALL_ATOM %}
     <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
     {% endif %}
-    
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "{{ SITEURL }}/#organization",
+                "name": "{{ SITENAME }}",
+                "url": "{{ SITEURL }}",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/logo.png"
+                },
+                "founder": {
+                    "@type": "Person",
+                    "@id": "{{ SITEURL }}/#person",
+                    "name": "{{ AUTHOR }}"
+                },
+                "sameAs": [
+                    {% if SOCIAL %}
+                    {% for name, link in SOCIAL %}"{{ link }}"{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                    {% endif %}
+                ],
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "contactType": "Customer Service",
+                    "url": "{{ SITEURL }}/contact/"
+                }
+            },
+            {
+                "@type": "Person",
+                "@id": "{{ SITEURL }}/#person",
+                "name": "{{ AUTHOR }}",
+                "url": "{{ SITEURL }}/about/",
+                "jobTitle": "CTO Coach & Technology Consultant",
+                "description": "Expert CTO coach helping technology leaders thrive with practical advice, AI-assisted development strategies, and outcome-focused leadership.",
+                "knowsAbout": ["CTO Coaching", "Technology Leadership", "Fractional CTO Services", "AI Development", "Engineering Management", "Software Architecture"],
+                "sameAs": [
+                    {% if SOCIAL %}
+                    {% for name, link in SOCIAL %}"{{ link }}"{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                    {% endif %}
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "{{ SITEURL }}/#website",
+                "url": "{{ SITEURL }}",
+                "name": "{{ SITENAME }}",
+                "description": "{% if SITE_DESCRIPTION %}{{ SITE_DESCRIPTION }}{% else %}Expert CTO coaching, fractional executive services, and technology consulting{% endif %}",
+                "publisher": {
+                    "@id": "{{ SITEURL }}/#organization"
+                },
+                "inLanguage": "{{ DEFAULT_LANG }}"
+            }
+        ]
+    }
+    </script>
+
     {% block head %}{% endblock head %}
 </head>
 

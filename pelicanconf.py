@@ -77,16 +77,25 @@ EXTRA_PATH_METADATA = {
 SITEMAP = {
     'format': 'xml',
     'priorities': {
-        'articles': 0.5,
+        'articles': 0.7,
         'indexes': 0.5,
-        'pages': 1.0
+        'pages': 0.9
     },
     'changefreqs': {
-        'articles': 'monthly',
+        'articles': 'weekly',
         'indexes': 'daily',
-        'pages': 'monthly'
+        'pages': 'weekly'
     }
 }
+
+# Performance optimizations
+LOAD_CONTENT_CACHE = True
+CACHE_CONTENT = True
+GZIP_CACHE = True
+
+# Additional SEO settings
+ARTICLE_LANG_URL = False
+ARTICLE_LANG_SAVE_AS = False
 
 # Markdown extensions
 MARKDOWN = {

@@ -2,6 +2,7 @@ Title: Fractional CTO Services
 Date: 2025-01-08
 Slug: services/fractional-cto
 Template: page
+Summary: Get strategic technology leadership for your growing company without full-time executive cost. Fractional CTO services perfect for companies scaling from startup to scale-up phase.
 
 # Fractional CTO: Senior Technology Leadership When You Need It
 

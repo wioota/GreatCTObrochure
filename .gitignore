@@ -1,6 +1,13 @@
 # Pelican output
 output/
 *.pid
+cache/
+
+# Beads subdirectory (separate repository)
+beads/
+
+# Beads issue tracking (local)
+.beads/
 
 # Python
 __pycache__/
@@ -52,3 +59,4 @@ node_modules/
 # MCP configuration with tokens
 mcp-config.json
 .env.local
+go1.25.3.linux-386.tar.gz

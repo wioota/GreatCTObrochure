@@ -7,21 +7,91 @@
 {% block og_description %}{{ article.summary|default(article.content|striptags|truncate(160))|e }}{% endblock og_description %}
 {% block og_url %}{{ SITEURL }}/{{ article.url }}{% endblock og_url %}
 {% block og_type %}article{% endblock og_type %}
+{% block canonical %}{{ SITEURL }}/{{ article.url }}{% endblock canonical %}
+
+{% block head %}
+<!-- Article Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ article.title|e }}",
+    "description": "{{ article.summary|default(article.content|striptags|truncate(160))|e }}",
+    "datePublished": "{{ article.date.isoformat() }}",
+    "dateModified": "{% if article.modified %}{{ article.modified.isoformat() }}{% else %}{{ article.date.isoformat() }}{% endif %}",
+    "author": {
+        "@type": "Person",
+        "@id": "{{ SITEURL }}/#person",
+        "name": "{{ AUTHOR }}"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "@id": "{{ SITEURL }}/#organization",
+        "name": "{{ SITENAME }}",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/logo.png"
+        }
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ SITEURL }}/{{ article.url }}"
+    },
+    "url": "{{ SITEURL }}/{{ article.url }}",
+    "inLanguage": "{{ DEFAULT_LANG }}",
+    {% if article.tags %}
+    "keywords": "{% for tag in article.tags %}{{ tag }}{% if not loop.last %}, {% endif %}{% endfor %}",
+    {% endif %}
+    "articleSection": "{% if article.category %}{{ article.category }}{% else %}Blog{% endif %}"
+}
+</script>
+
+<!-- BreadcrumbList Schema -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "{{ SITEURL }}"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "{{ SITEURL }}/blog/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{ article.title|e }}",
+            "item": "{{ SITEURL }}/{{ article.url }}"
+        }
+    ]
+}
+</script>
+{% endblock head %}
 
 {% block content %}
 <section class="py-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
+                <article itemscope itemtype="https://schema.org/BlogPosting">
                 <!-- Article Header -->
                 <header class="article-header mb-5">
-                    <h1 class="display-5 fw-bold mb-3">{{ article.title }}</h1>
+                    <h1 class="display-5 fw-bold mb-3" itemprop="headline">{{ article.title }}</h1>
                     
                     <div class="article-meta d-flex align-items-center text-muted mb-4">
-                        <time datetime="{{ article.date.isoformat() }}" class="me-3">
+                        <time datetime="{{ article.date.isoformat() }}" itemprop="datePublished" class="me-3">
                             <i class="far fa-calendar me-1"></i>
                             {{ article.locale_date }}
                         </time>
+                        <meta itemprop="dateModified" content="{% if article.modified %}{{ article.modified.isoformat() }}{% else %}{{ article.date.isoformat() }}{% endif %}">
+                        <meta itemprop="author" content="{{ AUTHOR }}">
                         
                         {% if article.category %}
                         <span class="me-3">
@@ -45,14 +115,14 @@
                     </div>
                     
                     {% if article.summary %}
-                    <div class="article-summary lead text-muted mb-4">
+                    <div class="article-summary lead text-muted mb-4" itemprop="description">
                         {{ article.summary }}
                     </div>
                     {% endif %}
                 </header>
-                
+
                 <!-- Article Content -->
-                <div class="article-content">
+                <div class="article-content" itemprop="articleBody">
                     {{ article.content }}
                 </div>
                 
@@ -88,6 +158,7 @@
                     </nav>
                     {% endif %}
                 </footer>
+                </article>
             </div>
         </div>
     </div>

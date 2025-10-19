@@ -2,6 +2,7 @@ Title: CTO Coaching
 Date: 2025-01-08
 Slug: services/cto-coach
 Template: page
+Summary: Transform your leadership effectiveness with personalized CTO coaching. One-on-one executive coaching designed specifically for CTOs and senior technology leaders to accelerate career growth and maximize impact.
 
 # Executive Coaching for Technology Leaders
 

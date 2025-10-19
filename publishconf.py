@@ -32,4 +32,5 @@ DELETE_OUTPUT_DIRECTORY = True
 # LINKEDIN_URL = 'https://linkedin.com/in/yourprofile'
 
 # SEO
-# SITE_DESCRIPTION = 'Expert CTO coaching, fractional executive services, and technology consulting'
+SITE_DESCRIPTION = 'Expert CTO coaching, fractional executive services, and technology consulting. Helping technology leaders thrive with practical advice, AI-assisted development strategies, and outcome-focused leadership.'
+SITE_KEYWORDS = 'CTO coaching, fractional CTO, technology consulting, CTO coach, technology leadership, AI development, engineering leadership, startup CTO, scale-up CTO'

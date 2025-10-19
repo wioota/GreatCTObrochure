@@ -2,6 +2,7 @@ Title: Services
 Date: 2025-01-08
 Slug: services
 Template: page
+Summary: Expert CTO coaching, fractional CTO services, and technology consulting for growing companies. Get the technology leadership expertise you need to scale your organization effectively.
 
 # How I Help Technology Leaders Succeed
 

@@ -1,5 +1,101 @@
 {% extends "base.html" %}
 
+{% block head %}
+<!-- FAQ Schema.org JSON-LD for AI/LLM Visibility -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "What is CTO coaching?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "CTO coaching is a professional development service that helps Chief Technology Officers improve their leadership skills, navigate complex technical and organizational challenges, and maximize their impact. Through group coaching sessions, peer learning, and expert guidance, CTOs gain practical frameworks and strategies to lead more effectively."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How can AI-assisted development help my organization?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "AI-assisted development tools can significantly accelerate software development, improve code quality, and enable teams to focus on higher-value work. CTOs need to understand when and how to adopt these tools effectively, balance automation with human expertise, and prepare their teams for this technological shift while maintaining quality and security standards."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What services does Great CTO offer?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Great CTO offers Group CTO Coaching sessions where technology leaders collaborate and learn from peers, CTO Life Line monthly livestreams discussing current challenges and AI impact on technology leadership, and access to a Discord community with curated resources like the CTO Coach Directory. All services focus on practical, outcome-oriented approaches to technology leadership."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Who is Daniel Walters?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Daniel Walters is an experienced CTO and CTO Coach dedicated to helping technology leaders thrive. With practical experience building and leading technology teams, coaching expertise using proven frameworks, and deep understanding of how AI is reshaping the CTO role, Daniel provides actionable insights that make a real difference for technology organizations."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How do I get started with CTO coaching?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Getting started is easy. Schedule a free consultation to discuss your specific challenges and goals. During this call, we'll explore how coaching can help you become a more effective technology leader, give your team the context they need to excel, and navigate the evolving landscape of technology leadership including AI-assisted development."
+            }
+        }
+    ]
+}
+</script>
+
+<!-- Offer Catalog Schema for Services -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    "name": "CTO Coaching and Technology Leadership Services",
+    "itemListElement": [
+        {
+            "@type": "Offer",
+            "itemOffered": {
+                "@type": "Service",
+                "name": "Group CTO Coaching",
+                "description": "Collaborative coaching sessions with fellow CTOs to share experiences, learn from peers, and tackle real challenges together.",
+                "provider": {
+                    "@id": "{{ SITEURL }}/#person"
+                }
+            }
+        },
+        {
+            "@type": "Offer",
+            "itemOffered": {
+                "@type": "Service",
+                "name": "CTO Life Line",
+                "description": "Monthly livestream conversations for CTOs discussing current challenges, AI impact, and practical leadership strategies.",
+                "provider": {
+                    "@id": "{{ SITEURL }}/#person"
+                }
+            }
+        },
+        {
+            "@type": "Offer",
+            "itemOffered": {
+                "@type": "Service",
+                "name": "Community & Resources",
+                "description": "Discord community, CTO Coach Directory access, and practical insights on AI-assisted development and technology leadership.",
+                "provider": {
+                    "@id": "{{ SITEURL }}/#person"
+                }
+            }
+        }
+    ]
+}
+</script>
+{% endblock head %}
+
 {% block content %}
 <!-- Hero Section -->
 <section class="hero-section bg-primary text-white py-5">

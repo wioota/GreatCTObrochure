@@ -2,6 +2,7 @@ Title: Strategic Technology Consulting
 Date: 2025-01-08
 Slug: services/consulting
 Template: page
+Summary: Focused technology consulting engagements to solve specific challenges, optimize technical operations, and accelerate engineering performance. Strategic guidance from an experienced CTO.
 
 # Strategic Technology Consulting
 

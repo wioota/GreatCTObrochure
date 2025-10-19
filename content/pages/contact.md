@@ -2,6 +2,7 @@ Title: Contact
 Date: 2025-01-08
 Slug: contact
 Template: page
+Summary: Connect with Great CTO for coaching, fractional CTO services, or consulting. Book a complimentary session, join the community, or subscribe to the newsletter for technology leadership insights.
 
 # Let's Connect and Grow Together
 

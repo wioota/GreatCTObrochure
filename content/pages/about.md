@@ -2,6 +2,7 @@ Title: About
 Date: 2025-01-08
 Slug: about
 Template: page
+Summary: Experienced CTO and CTO Coach helping technology leaders thrive with practical advice, AI-assisted development strategies, and outcome-focused leadership. Learn about Daniel Walters' approach to technology leadership.
 
 # About Daniel Walters
 
