@@ -12,3 +12,4 @@ pelican-neighbors==1.2.0
 pelican-sitemap==1.1.0
 invoke==2.2.0
 markdownify==0.12.1
+urllib3>=2.6.0 # not directly required, pinned by Snyk to avoid a vulnerability
